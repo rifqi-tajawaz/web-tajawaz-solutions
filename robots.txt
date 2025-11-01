@@ -1,0 +1,13 @@
+# Robots.txt untuk Tajawaz Solutions
+# Website: https://www.tajawaz.my.id
+
+User-agent: *
+Allow: /
+
+# Disallow admin & internal files
+Disallow: /assets/php/
+Disallow: /components/
+Disallow: /temp_*.txt
+
+# Sitemap Location
+Sitemap: https://www.tajawaz.my.id/sitemap.xml

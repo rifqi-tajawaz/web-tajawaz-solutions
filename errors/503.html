@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error 503 - Tajawaz Solutions | Layanan Tidak Tersedia</title>
+    <meta
+      name="description"
+      content="Layanan sedang dalam pemeliharaan. Kami akan segera kembali."
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="icon" href="../assets/images/favicon.ico" />
+    <style>
+      .maintenance-info {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .maintenance-card {
+        padding: 1.25rem 1.5rem;
+        background: var(--accent-color-3);
+        border-radius: 18px;
+        margin-bottom: 0;
+        text-align: left;
+        max-width: 650px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid var(--accent-color-6);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .maintenance-card p {
+        margin-bottom: 0.75rem;
+        color: var(--primary);
+        font-size: 14px;
+      }
+
+      .maintenance-card p:last-child {
+        margin-bottom: 0;
+      }
+
+      .countdown-timer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 1rem 0 0.75rem 0;
+        flex-wrap: nowrap;
+      }
+
+      .countdown-item {
+        background: linear-gradient(135deg, #5f2ded 0%, #8b4dff 100%);
+        color: white;
+        padding: 0.6rem 1.75rem;
+        border-radius: 12px;
+        min-width: 95px;
+        text-align: center;
+        box-shadow: 0 6px 20px rgba(95, 45, 237, 0.4), 0 3px 10px rgba(139, 77, 255, 0.3),
+          inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      .countdown-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s;
+      }
+
+      .countdown-item:hover::before {
+        left: 100%;
+      }
+
+      .countdown-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 28px rgba(95, 45, 237, 0.5), 0 5px 14px rgba(139, 77, 255, 0.4);
+      }
+
+      .countdown-number {
+        display: inline-block;
+        font-size: 36px;
+        font-weight: 900;
+        line-height: 1;
+        margin-right: 0.4rem;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .countdown-label {
+        display: inline-block;
+        font-size: 10px;
+        text-transform: uppercase;
+        opacity: 0.95;
+        letter-spacing: 0.8px;
+        font-weight: 600;
+        vertical-align: middle;
+      }
+
+      .countdown-separator {
+        font-size: 32px;
+        font-weight: bold;
+        color: #5f2ded;
+        margin: 0 0.15rem;
+        animation: blink 1.5s ease-in-out infinite;
+        text-shadow: 0 2px 8px rgba(95, 45, 237, 0.5);
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 6px 20px rgba(95, 45, 237, 0.4), 0 3px 10px rgba(139, 77, 255, 0.3),
+            inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+        }
+        50% {
+          box-shadow: 0 6px 28px rgba(95, 45, 237, 0.6), 0 3px 14px rgba(139, 77, 255, 0.5),
+            inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 0.65rem 1.35rem;
+        background: linear-gradient(135deg, #5f2ded 0%, #8b4dff 100%);
+        color: white;
+        border-radius: 25px;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        box-shadow: 0 4px 15px rgba(95, 45, 237, 0.4);
+        letter-spacing: 0.5px;
+      }
+
+      .progress-bar-container {
+        width: 100%;
+        height: 6px;
+        background: var(--accent-color-5);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 1rem;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #5f2ded 0%, #8b4dff 100%);
+        border-radius: 10px;
+        transition: width 1s linear;
+        box-shadow: 0 0 15px rgba(95, 45, 237, 0.6);
+        position: relative;
+      }
+
+      .progress-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        animation: shimmer 2s infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      /* Button container spacing */
+      .button-container {
+        margin-top: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      @media (max-width: 768px) {
+        .countdown-timer {
+          gap: 0.4rem;
+          margin: 0.75rem 0 0.5rem 0;
+        }
+
+        .countdown-item {
+          min-width: 80px;
+          padding: 0.5rem 1.25rem;
+        }
+
+        .countdown-number {
+          font-size: 30px;
+          margin-right: 0.3rem;
+        }
+
+        .countdown-label {
+          font-size: 9px;
+        }
+
+        .countdown-separator {
+          font-size: 26px;
+          margin: 0 0.1rem;
+        }
+
+        .maintenance-card {
+          padding: 1rem 1.25rem;
+          max-width: 90%;
+          margin-bottom: 0;
+        }
+
+        .maintenance-info {
+          margin-bottom: 0.5rem;
+        }
+
+        .status-badge {
+          padding: 0.6rem 1.25rem;
+          font-size: 13px;
+          margin-bottom: 1rem;
+        }
+
+        .button-container {
+          margin-top: 0.75rem;
+          margin-bottom: 2.5rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .countdown-timer {
+          gap: 0.3rem;
+          margin: 0.5rem 0 0.5rem 0;
+        }
+
+        .countdown-item {
+          min-width: 70px;
+          padding: 0.45rem 1rem;
+          border-radius: 10px;
+        }
+
+        .countdown-number {
+          font-size: 26px;
+          margin-right: 0.25rem;
+        }
+
+        .countdown-label {
+          font-size: 8px;
+          letter-spacing: 0.5px;
+        }
+
+        .countdown-separator {
+          font-size: 22px;
+          margin: 0;
+        }
+
+        .maintenance-card {
+          padding: 0.75rem 1rem;
+          max-width: 95%;
+          margin-bottom: 0;
+          border-radius: 15px;
+        }
+
+        .maintenance-info {
+          margin-bottom: 0.5rem;
+        }
+
+        .maintenance-card p {
+          font-size: 12px;
+        }
+
+        .status-badge {
+          padding: 0.5rem 1rem;
+          font-size: 12px;
+          margin-bottom: 0.75rem;
+        }
+
+        .progress-bar-container {
+          height: 5px;
+          margin-top: 0.75rem;
+        }
+
+        .button-container {
+          margin-top: 0.75rem;
+          margin-bottom: 2rem;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .countdown-item {
+          min-width: 65px;
+          padding: 0.4rem 0.75rem;
+        }
+
+        .countdown-number {
+          font-size: 24px;
+        }
+
+        .countdown-label {
+          font-size: 7px;
+        }
+
+        .countdown-separator {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Section Header -->
+    <header>
+      <div id="header"></div>
+    </header>
+
+    <!-- Section Content Edit -->
+    <aside>
+      <div id="edit-sidebar"></div>
+    </aside>
+
+    <!-- Section Search -->
+    <aside>
+      <div id="search-form-container"></div>
+    </aside>
+
+    <!-- Section Sidebar -->
+    <aside>
+      <div id="sidebar"></div>
+    </aside>
+
+    <!-- Section Main Content -->
+    <main>
+      <div class="section-404">
+        <div class="banner-layout-404">
+          <div class="layout-404">
+            <span
+              class="text-404 title-heading animate-box animated animate__animated"
+              data-animate="animate__fadeInRight"
+              >503</span
+            >
+            <h3>Layanan Sedang Dalam Pemeliharaan</h3>
+            <p>
+              Kami sedang melakukan pemeliharaan terjadwal untuk meningkatkan layanan kami. Website
+              akan kembali online segera. Mohon maaf atas ketidaknyamanannya.
+            </p>
+
+            <div class="maintenance-info">
+              <div class="maintenance-card">
+                <div style="text-align: center">
+                  <span class="status-badge">🔧 Pemeliharaan Aktif</span>
+                </div>
+
+                <div class="countdown-timer">
+                  <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span
+                    ><span class="countdown-label">Jam</span>
+                  </div>
+                  <span class="countdown-separator">:</span>
+                  <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span
+                    ><span class="countdown-label">Menit</span>
+                  </div>
+                  <span class="countdown-separator">:</span>
+                  <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span
+                    ><span class="countdown-label">Detik</span>
+                  </div>
+                </div>
+
+                <div class="progress-bar-container">
+                  <div class="progress-bar" id="progressBar"></div>
+                </div>
+
+                <p
+                  style="
+                    text-align: center;
+                    margin-top: 0.75rem;
+                    color: var(--text-color);
+                    font-size: 12px;
+                  "
+                >
+                  <strong>Estimasi waktu selesai:</strong>
+                  <span id="estimatedTime">Menghitung...</span>
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="d-flex flex-column flex-md-row gspace-2 justify-content-center button-container"
+            >
+              <a href="javascript:location.reload()" class="btn btn-accent">
+                <div class="btn-title">
+                  <span>Coba Lagi</span>
+                </div>
+                <div class="icon-circle">
+                  <i class="fa-solid fa-rotate-right"></i>
+                </div>
+              </a>
+              <a href="/contact.html" class="btn btn-accent">
+                <div class="btn-title">
+                  <span>Hubungi Support</span>
+                </div>
+                <div class="icon-circle">
+                  <i class="fa-solid fa-headset"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Section Footer -->
+    <footer>
+      <div id="footer"></div>
+    </footer>
+
+    <script src="../assets/js/vendor/jquery.min.js"></script>
+    <script src="../assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/vendor/swiper-bundle.min.js"></script>
+    <script src="../assets/js/themeswitch.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/swiper-script.js"></script>
+    <script src="../assets/js/submit-form.js"></script>
+    <script src="../assets/js/video_embedded.js"></script>
+
+    <!-- Countdown Timer Script -->
+    <script>
+      // Set maintenance duration (in minutes) - Default: 30 minutes
+      const maintenanceDuration = 30;
+
+      // Calculate end time
+      const now = new Date().getTime();
+      const endTime = now + maintenanceDuration * 60 * 1000;
+      const totalDuration = maintenanceDuration * 60 * 1000;
+
+      // Format estimated end time
+      const endDate = new Date(endTime);
+      const hours = String(endDate.getHours()).padStart(2, '0');
+      const minutes = String(endDate.getMinutes()).padStart(2, '0');
+      document.getElementById('estimatedTime').textContent = hours + ':' + minutes + ' WIB';
+
+      // Update countdown every second
+      const countdownInterval = setInterval(function () {
+        const currentTime = new Date().getTime();
+        const remainingTime = endTime - currentTime;
+
+        // Calculate time units
+        const hoursLeft = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutesLeft = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+        const secondsLeft = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+        // Update countdown display
+        document.getElementById('hours').textContent = String(hoursLeft).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutesLeft).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(secondsLeft).padStart(2, '0');
+
+        // Update progress bar
+        const progress = ((totalDuration - remainingTime) / totalDuration) * 100;
+        document.getElementById('progressBar').style.width = Math.min(progress, 100) + '%';
+
+        // When countdown reaches zero
+        if (remainingTime < 0) {
+          clearInterval(countdownInterval);
+          document.getElementById('hours').textContent = '00';
+          document.getElementById('minutes').textContent = '00';
+          document.getElementById('seconds').textContent = '00';
+          document.getElementById('progressBar').style.width = '100%';
+
+          // Auto reload after maintenance time
+          setTimeout(function () {
+            location.reload();
+          }, 2000);
+        }
+      }, 1000);
+    </script>
+
+    <!-- Google console tag analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-04RD80GN2W"></script>
+    <script src="../assets/js/google-console-tag.js"></script>
+  </body>
+</html>

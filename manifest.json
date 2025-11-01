@@ -1,0 +1,32 @@
+{
+  "name": "Tajawaz Solutions - The Art Of Exceeding Value",
+  "short_name": "Tajawaz",
+  "description": "Ekosistem bisnis lengkap Indonesia: mentorship praktis, tools bisnis, peluang kemitraan & komunitas entrepreneur",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/assets/images/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/logo-img/logo-tajawaz.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "productivity", "education"],
+  "lang": "id",
+  "dir": "ltr"
+}
